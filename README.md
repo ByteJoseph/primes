@@ -38,7 +38,7 @@ This repository contains a Python script and a Mojo script that generates prime 
     ```
 
 #### For Mojo Script
-1. **Install Mojo** (if not already installed). Follow the instructions on the [Mojo documentation](https://mojo-lang.org/docs/) for installation.
+1. **Install Mojo** (if not already installed). Follow the instructions on the [Mojo documentation](https://www.modular.com/mojo#:~:text=Mojo%20combines%20the%20usability%20of%20Python%20with%20the%20performance%20of) for installation.
 2. **Run the Mojo script**:
     ```bash
     mojo prime.🔥
