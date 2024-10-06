@@ -1,0 +1,42 @@
+import json
+import os
+
+fn is_prime(n: Int) -> Bool:
+    if n <= 1:
+        return False
+    for i in range(2, Int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+fn generate_primes(start: Int, limit: Int, existing_primes: Dict[Int, Int]) -> Dict[Int, Int]:
+    primes = existing_primes
+    count = max(existing_primes.values()) + 1 if len(existing_primes) > 0 else 1
+    for num in range(start, limit + 1):
+        if is_prime(num) and num not in primes:
+            primes[num] = count
+            count += 1
+    return primes
+
+fn load_existing_primes(filename: String) -> Dict[Int, Int]:
+    if os.path.exists(filename):
+        with open(filename, 'r') as json_file:
+            return json.load(json_file)
+    return {}
+
+fn main():
+    prime_limit = input("Enter prime limit: ").to_int()
+    json_file_name = "primes.json"
+
+    prime_dict = load_existing_primes(json_file_name)
+
+    start_from = max(prime_dict.keys()) + 1 if len(prime_dict) > 0 else 2
+
+    prime_dict = generate_primes(start_from, prime_limit, prime_dict)
+
+    with open(json_file_name, 'w') as json_file:
+        json.dump(prime_dict, json_file, indent=4)
+
+    print(f"Prime numbers up to {prime_limit} have been saved to '{json_file_name}'")
+
+main()
